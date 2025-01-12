@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+</head>
+
+<body>
+    <div style="padding: 10px; background-color: azure;">
+        <label>Añade elementos al array:</label>
+        <input type="text" id="value" />
+        <button onclick="add()">Añadir</button>
+    </div>
+    <div style="padding: 10px; background-color: azure;">
+        <label>Longitud del nuevo array:</label>
+        <input type="number" id="number" />
+        <button onclick="makeArray()">set</button>
+    </div>
+    <div>
+        <label>Array original: </label>
+        <p id="list"></p>
+    </div>
+    <div>
+        <label>Nuevo array: </label>
+        <p id="final-list"></p>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const array = []
+
+    //===============================
+    //==========CHALLENGE============
+    //===============================
+
+    function Draw(array, num) {
+        if (num > array.length) {
+            return array
+        }
+        const newArray = [...array]
+        let finalArray = []
+        for (let i = 0; i < num; i++) {
+            let n = parseInt(Math.random() * newArray.length)
+            finalArray.push(newArray[n])
+            newArray.splice(n, 1)
+        }
+        return finalArray
+    }
+
+    //================================
+
+    function add() {
+        array.push(document.getElementById('value').value)
+        document.getElementById('list').innerHTML = array
+        document.getElementById('value').value = ''
+    }
+
+    function makeArray() {
+        const number = document.getElementById('number').value
+        const finalArray = Draw(array, number)
+        document.getElementById('final-list').innerHTML = finalArray
+    }
+
+</script>
